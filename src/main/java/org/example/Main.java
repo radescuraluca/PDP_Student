@@ -50,5 +50,24 @@ public class Main {
         System.out.println(
                 cautat.studentPrezent(lista)
         );
-    }
-}
+
+
+    lista.add(new Student(1, "Ion", "Popescu", "Info"));
+    lista.add(new Student(2, "Maria", "Ionescu", "Mate"));
+    lista.add(new Student(3, "Alex", "Georgescu", "Info"));
+
+    // sortare dupa nume
+
+     Student.sortByName(lista);
+     System.out.println(lista);
+
+    // sortare dupa formatie + nume
+
+     Student.sortStudents(lista);
+
+     System.out.println(lista);
+
+    // scriere in fisier
+
+     Student.outputStudentList(lista);
+}}

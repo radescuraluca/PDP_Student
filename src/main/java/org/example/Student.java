@@ -1,7 +1,15 @@
 package org.example;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class Student {
     int numarMatricol;
@@ -62,5 +70,56 @@ public class Student {
                 "nume= " + nume + "; " +
                 "formatieDeStudiu= " + formatieDeStudiu +
                 '}';
+    }
+
+
+    // sorteaza dupa nume
+    public static List<Student> sortByName(List<Student> lista) {
+
+        Collections.sort(lista,
+                Comparator.comparing(s -> s.nume));
+
+        return lista;
+    }
+
+
+
+    // sorteaza dupa formatie + nume
+    public static List<Student> sortStudents(List<Student> lista) {
+
+        Collections.sort(lista,
+                Comparator.comparing((Student s) -> s.formatieDeStudiu)
+                        .thenComparing(s -> s.nume));
+
+        return lista;
+    }
+
+
+
+    // scrie studentii in fisier
+    public static void outputStudentList(List<Student> lista) {
+
+        try {
+
+            FileWriter writer = new FileWriter("output.txt");
+
+            for (Student s : lista) {
+
+                writer.write(
+                        s.numarMatricol + "," +
+                                s.prenume + "," +
+                                s.nume + "," +
+                                s.formatieDeStudiu + "\n"
+                );
+            }
+
+            writer.close();
+
+            System.out.println("Fisier scris cu succes.");
+
+        } catch (IOException e) {
+
+            System.out.println("Eroare la scriere.");
+        }
     }
 }
