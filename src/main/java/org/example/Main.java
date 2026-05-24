@@ -1,17 +1,54 @@
 package org.example;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    static void main() {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        IO.println(String.format("Hello and welcome!"));
+import java.util.ArrayList;
+import java.util.HashSet;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            IO.println("i = " + i);
-        }
+public class Main {
+
+    public static void main(String[] args) {
+
+        // HashSet = fara duplicate + cautare O(1)
+
+        HashSet<Student> studentiSet = new HashSet<>();
+
+        studentiSet.add(
+                new Student(1, "Ion", "Popescu", "Info")
+        );
+
+        studentiSet.add(
+                new Student(99, "Ion", "Popescu", "Info")
+        );
+
+        System.out.println("HashSet:");
+        System.out.println(studentiSet);
+
+
+
+        // ArrayList + studentPrezent()
+
+        ArrayList<Student> lista = new ArrayList<>();
+
+        Student s1 =
+                new Student(1, "Ion", "Popescu", "Info");
+
+        Student s2 =
+                new Student(2, "Maria", "Ionescu", "Mate");
+
+        lista.add(s1);
+        lista.add(s2);
+
+
+        // student cautat
+
+        Student cautat =
+                new Student(99, "Ion", "Popescu", "Info");
+
+
+        // verificam daca exista in lista
+
+        System.out.println("\nStudent prezent in lista:");
+        System.out.println(
+                cautat.studentPrezent(lista)
+        );
     }
 }
