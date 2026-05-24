@@ -2,6 +2,8 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.HashMap;
 
 public class Main {
 
@@ -70,4 +72,25 @@ public class Main {
     // scriere in fisier
 
      Student.outputStudentList(lista);
+
+        Map<Student, Integer> note = new HashMap<>();
+
+        Student s3 =
+                new Student(3, "Alex", "Georgescu", "Info");
+
+        Student s4 =
+                new Student(4, "Maria", "Ionescu", "Mate");
+
+
+        // adaugam student + nota
+
+        note.put(s3, 10);
+        note.put(s4, 8);
+
+
+        // afisam nota studentului
+
+        System.out.println(
+                Student.notaStudent(s3, note)
+        );
 }}

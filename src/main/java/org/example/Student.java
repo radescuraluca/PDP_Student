@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 public class Student {
     int numarMatricol;
@@ -121,5 +122,13 @@ public class Student {
 
             System.out.println("Eroare la scriere.");
         }
+
+
+    }
+
+    public static int notaStudent(Student s,
+                                  Map<Student, Integer> note) {
+
+        return note.get(s);
     }
 }
