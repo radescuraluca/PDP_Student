@@ -1,0 +1,2 @@
+1,Ion,Popescu,Info,10.0
+2,Maria,Ionescu,Mate,8.5

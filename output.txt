@@ -1,5 +1,3 @@
 3,Alex,Georgescu,Info
 1,Ion,Popescu,Info
-1,Ion,Popescu,Info
-2,Maria,Ionescu,Mate
 2,Maria,Ionescu,Mate

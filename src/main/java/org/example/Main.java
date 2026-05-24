@@ -1,16 +1,15 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.HashMap;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        // HashSet = fara duplicate + cautare O(1)
-
+        // HashSet + studentPrezent()
         HashSet<Student> studentiSet = new HashSet<>();
 
         studentiSet.add(
@@ -26,9 +25,8 @@ public class Main {
 
 
 
-        // ArrayList + studentPrezent()
-
-        ArrayList<Student> lista = new ArrayList<>();
+        ArrayList<Student> listaStudenti =
+                new ArrayList<>();
 
         Student s1 =
                 new Student(1, "Ion", "Popescu", "Info");
@@ -36,44 +34,63 @@ public class Main {
         Student s2 =
                 new Student(2, "Maria", "Ionescu", "Mate");
 
-        lista.add(s1);
-        lista.add(s2);
+        listaStudenti.add(s1);
+        listaStudenti.add(s2);
 
-
-        // student cautat
 
         Student cautat =
                 new Student(99, "Ion", "Popescu", "Info");
 
-
-        // verificam daca exista in lista
-
-        System.out.println("\nStudent prezent in lista:");
         System.out.println(
-                cautat.studentPrezent(lista)
+                "\nStudent prezent:"
+        );
+
+        System.out.println(
+                cautat.studentPrezent(listaStudenti)
         );
 
 
-    lista.add(new Student(1, "Ion", "Popescu", "Info"));
-    lista.add(new Student(2, "Maria", "Ionescu", "Mate"));
-    lista.add(new Student(3, "Alex", "Georgescu", "Info"));
 
-    // sortare dupa nume
+        // sortari + output fisier
+        ArrayList<Student> listaSortare =
+                new ArrayList<>();
 
-     Student.sortByName(lista);
-     System.out.println(lista);
+        listaSortare.add(
+                new Student(1, "Ion", "Popescu", "Info")
+        );
 
-    // sortare dupa formatie + nume
+        listaSortare.add(
+                new Student(2, "Maria", "Ionescu", "Mate")
+        );
 
-     Student.sortStudents(lista);
+        listaSortare.add(
+                new Student(3, "Alex", "Georgescu", "Info")
+        );
 
-     System.out.println(lista);
 
-    // scriere in fisier
+        Student.sortByName(listaSortare);
 
-     Student.outputStudentList(lista);
+        System.out.println(
+                "\nSortare dupa nume:"
+        );
 
-        Map<Student, Integer> note = new HashMap<>();
+        System.out.println(listaSortare);
+
+
+        Student.sortStudents(listaSortare);
+
+        System.out.println(
+                "\nSortare dupa formatie + nume:"
+        );
+
+        System.out.println(listaSortare);
+
+
+        Student.outputStudentList(listaSortare);
+
+        // Map<Student, Integer>
+        Map<Student, Integer> note =
+                new HashMap<>();
 
         Student s3 =
                 new Student(3, "Alex", "Georgescu", "Info");
@@ -82,15 +99,52 @@ public class Main {
                 new Student(4, "Maria", "Ionescu", "Mate");
 
 
-        // adaugam student + nota
-
         note.put(s3, 10);
         note.put(s4, 8);
 
 
-        // afisam nota studentului
+        System.out.println(
+                "\nNota student:"
+        );
 
         System.out.println(
                 Student.notaStudent(s3, note)
         );
-}}
+
+        // StudentCuNota
+        ArrayList<StudentCuNota> listaNote =
+                new ArrayList<>();
+
+        listaNote.add(
+                new StudentCuNota(
+                        1,
+                        "Ion",
+                        "Popescu",
+                        "Info",
+                        10
+                )
+        );
+
+        listaNote.add(
+                new StudentCuNota(
+                        2,
+                        "Maria",
+                        "Ionescu",
+                        "Mate",
+                        8.5
+                )
+        );
+
+
+        System.out.println(
+                "\nStudenti cu note:"
+        );
+
+        System.out.println(listaNote);
+
+
+        StudentCuNota.outputStudentCuNota(
+                listaNote
+        );
+    }
+}
