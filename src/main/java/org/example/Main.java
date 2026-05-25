@@ -145,6 +145,122 @@ public class Main {
         );
 
 
+        // ================= STREAMS / LAMBDA =================
+
+
+// 1. studenti cu nota 10
+
+        System.out.println("Studenti cu nota 10:");
+
+        listaNote.stream()
+
+                // pastram doar studentii cu nota 10
+
+                .filter(s -> s.nota == 10)
+
+                // afisam fiecare student
+
+                .forEach(System.out::println);
+
+
+
+
+// 2. studenti cu nota sub 5
+
+        System.out.println("\nStudenti cu nota sub 5:");
+
+        listaNote.stream()
+
+                // pastram doar studentii cu nota < 5
+
+                .filter(s -> s.nota < 5)
+
+                // afisam studentii
+
+                .forEach(System.out::println);
+
+
+
+
+// 3. transformam lista
+// notele sub 4 devin 4
+
+        System.out.println("\nLista modificata:");
+
+
+        List<StudentCuNota> listaNoua =
+
+                listaNote.stream()
+
+                        // transformam studentii
+
+                        .map(s -> {
+
+                            // daca nota este sub 4
+
+                            if (s.nota < 4) {
+
+                                // cream student nou cu nota 4
+
+                                return new StudentCuNota(
+                                        s.numarMatricol,
+                                        s.prenume,
+                                        s.nume,
+                                        s.formatieDeStudiu,
+                                        4
+                                );
+                            }
+
+                            // altfel ramane neschimbat
+
+                            return s;
+                        })
+
+                        // transformam stream -> lista
+
+                        .toList();
+
+
+// afisam lista noua
+
+        System.out.println(listaNoua);
+
+
+
+
+// 4. calculam suma notelor
+
+        double suma =
+
+                listaNote.stream()
+
+                        // luam doar notele
+
+                        .map(s -> s.nota)
+
+                        // adunam toate notele
+
+                        .reduce(0.0, Double::sum);
+
+
+        System.out.println("\nSuma notelor:");
+
+        System.out.println(suma);
+
+
+
+
+// 5. calculam media
+
+        double media = suma / listaNote.size();
+
+
+        System.out.println("\nMedia notelor:");
+
+        System.out.println(media);
+
+
+// separare in 2 formatii
 
         StudentCuNota.salveazaStudentiXlsx(
                 listaNote,
