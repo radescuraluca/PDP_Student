@@ -146,5 +146,21 @@ public class Main {
         StudentCuNota.outputStudentCuNota(
                 listaNote
         );
+
+
+
+        StudentCuNota.salveazaStudentiXlsx(
+                listaNote,
+                "studenti.xlsx"
+        );
+
+
+        ArrayList<StudentCuNota> cititi =
+                StudentCuNota.citesteStudentiXlsx(
+                        "studenti.xlsx"
+                );
+
+
+        System.out.println(cititi);
     }
 }
