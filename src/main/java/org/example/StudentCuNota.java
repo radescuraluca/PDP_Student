@@ -278,13 +278,10 @@ public class StudentCuNota extends Student {
         List<List<StudentCuNota>> rezultat =
                 new ArrayList<>();
 
-
         rezultat.add(grupa1);
         rezultat.add(grupa2);
 
-
         return rezultat;
     }
-
 
 }

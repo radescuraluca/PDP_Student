@@ -1,8 +1,62 @@
 package org.example;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class Main {
+
+    // Thread 1
+    Thread tCitire1 = new Thread(() -> {
+
+        ArrayList<Student> studenti1 =
+                citesteStudentiDinFisier("Stud1.csv");
+
+        synchronized (FStudenti) {
+
+            FStudenti.addAll(studenti1);
+        }
+
+        System.out.println("Fisierul Stud1.csv a fost citit.");
+    });
+
+    private ArrayList<Student> citesteStudentiDinFisier(String s) {
+    }
+
+
+    // Thread 2
+    Thread tCitire2 = new Thread(() -> {
+
+        ArrayList<Student> studenti2 =
+                citesteStudentiDinFisier("Stud2.csv");
+
+        synchronized (FStudenti) {
+
+            FStudenti.addAll(studenti2);
+        }
+
+        System.out.println("Fisierul Stud2.csv a fost citit.");
+    });
+
+
+    // pornire thread-uri
+        tCitire1.start();
+        tCitire2.start();
+
+
+    // asteptare finalizare
+        try {
+
+        tCitire1.join();
+        tCitire2.join();
+
+    } catch (InterruptedException e) {
+
+        e.printStackTrace();
+    }
+
 
     public static void main(String[] args) {
 
@@ -410,5 +464,56 @@ public class Main {
                 listaNote
         );
 
+        ///C23/1 - ex 2
+
+            /* // Thread 1
+            Thread tCitire1 = new Thread(() -> {
+
+                ArrayList<Student> studenti1 =
+                        citesteStudentiDinFisier("Stud1.csv");
+
+                synchronized (FStudenti) {
+
+                    FStudenti.addAll(studenti1);
+                }
+
+                System.out.println("Fisierul Stud1.csv a fost citit.");
+            });
+
+
+            // Thread 2
+            Thread tCitire2 = new Thread(() -> {
+
+                ArrayList<Student> studenti2 =
+                        citesteStudentiDinFisier("Stud2.csv");
+
+                synchronized (FStudenti) {
+
+                    FStudenti.addAll(studenti2);
+                }
+
+                System.out.println("Fisierul Stud2.csv a fost citit.");
+            });
+
+
+            // pornire thread-uri
+            tCitire1.start();
+            tCitire2.start();
+
+
+            // asteptare finalizare
+            try {
+
+                tCitire1.join();
+                tCitire2.join();
+
+            } catch (InterruptedException e) {
+
+                e.printStackTrace();
+            }
+*/
+
     }
+
+
 }
