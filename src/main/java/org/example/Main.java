@@ -397,14 +397,18 @@ public class Main {
             }
         });
 
-
-
-
 // pornim threadurile
 
         threadPicati.start();
 
         threadPromovati.start();
+
+
+
+        //C23/1 - ex 1
+        ExportCuHeaderDecorator.exportCuHeader(
+                listaNote
+        );
 
     }
 }
