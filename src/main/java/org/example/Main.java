@@ -8,56 +8,6 @@ import java.util.*;
 
 public class Main {
 
-    // Thread 1
-    Thread tCitire1 = new Thread(() -> {
-
-        ArrayList<Student> studenti1 =
-                citesteStudentiDinFisier("Stud1.csv");
-
-        synchronized (FStudenti) {
-
-            FStudenti.addAll(studenti1);
-        }
-
-        System.out.println("Fisierul Stud1.csv a fost citit.");
-    });
-
-    private ArrayList<Student> citesteStudentiDinFisier(String s) {
-    }
-
-
-    // Thread 2
-    Thread tCitire2 = new Thread(() -> {
-
-        ArrayList<Student> studenti2 =
-                citesteStudentiDinFisier("Stud2.csv");
-
-        synchronized (FStudenti) {
-
-            FStudenti.addAll(studenti2);
-        }
-
-        System.out.println("Fisierul Stud2.csv a fost citit.");
-    });
-
-
-    // pornire thread-uri
-        tCitire1.start();
-        tCitire2.start();
-
-
-    // asteptare finalizare
-        try {
-
-        tCitire1.join();
-        tCitire2.join();
-
-    } catch (InterruptedException e) {
-
-        e.printStackTrace();
-    }
-
-
     public static void main(String[] args) {
 
         // HashSet + studentPrezent()
@@ -192,11 +142,6 @@ public class Main {
         );
 
         System.out.println(listaNote);
-
-
-        StudentCuNota.outputStudentCuNota(
-                listaNote
-        );
 
 
         // ================= STREAMS / LAMBDA =================
@@ -466,52 +411,99 @@ public class Main {
 
         ///C23/1 - ex 2
 
-            /* // Thread 1
-            Thread tCitire1 = new Thread(() -> {
-
-                ArrayList<Student> studenti1 =
-                        citesteStudentiDinFisier("Stud1.csv");
-
-                synchronized (FStudenti) {
-
-                    FStudenti.addAll(studenti1);
-                }
-
-                System.out.println("Fisierul Stud1.csv a fost citit.");
-            });
+        // ================= CITIRE PARALELA CSV + XLSX =================
 
 
-            // Thread 2
-            Thread tCitire2 = new Thread(() -> {
+// colectia comuna
 
-                ArrayList<Student> studenti2 =
-                        citesteStudentiDinFisier("Stud2.csv");
-
-                synchronized (FStudenti) {
-
-                    FStudenti.addAll(studenti2);
-                }
-
-                System.out.println("Fisierul Stud2.csv a fost citit.");
-            });
+        ArrayList<Object> FStudenti =
+                new ArrayList<>();
 
 
-            // pornire thread-uri
-            tCitire1.start();
-            tCitire2.start();
 
 
-            // asteptare finalizare
-            try {
+// thread pentru CSV
 
-                tCitire1.join();
-                tCitire2.join();
+        Thread tCitire1 = new Thread(() -> {
 
-            } catch (InterruptedException e) {
+            ArrayList<Student> studentiCsv =
 
-                e.printStackTrace();
+                    Student.citesteStudentiCsv(
+                            "output.txt"
+                    );
+
+
+            // adaugam sincronizat
+
+            synchronized (FStudenti) {
+
+                FStudenti.addAll(studentiCsv);
             }
-*/
+
+            System.out.println(
+                    "Fisier CSV citit."
+            );
+        });
+
+
+
+
+// thread pentru XLSX
+
+        Thread tCitire2 = new Thread(() -> {
+
+            ArrayList<StudentCuNota> studentiXlsx =
+
+                    StudentCuNota.citesteStudentiXlsx(
+                            "studenti.xlsx"
+                    );
+
+
+            synchronized (FStudenti) {
+
+                FStudenti.addAll(studentiXlsx);
+            }
+
+            System.out.println(
+                    "Fisier XLSX citit."
+            );
+        });
+
+
+
+
+// pornim threadurile
+
+        tCitire1.start();
+
+        tCitire2.start();
+
+
+
+
+// asteptam terminarea lor
+
+        try {
+
+            tCitire1.join();
+
+            tCitire2.join();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+
+
+
+
+// afisam colectia finala
+
+        System.out.println(
+                "\nColectie finala:"
+        );
+
+        System.out.println(FStudenti);
 
     }
 

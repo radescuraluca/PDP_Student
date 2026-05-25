@@ -127,4 +127,50 @@ public class Student {
 
         return note.get(s);
     }
+
+    public static ArrayList<Student>
+    citesteStudentiCsv(String numeFisier) {
+
+        ArrayList<Student> lista =
+                new ArrayList<>();
+
+        try {
+
+            java.io.BufferedReader reader =
+                    new java.io.BufferedReader(
+                            new java.io.FileReader(
+                                    numeFisier
+                            )
+                    );
+
+
+            String linie;
+
+            while ((linie = reader.readLine())
+                    != null) {
+
+                String[] data =
+                        linie.split(",");
+
+
+                Student s =
+                        new Student(
+                                Integer.parseInt(data[0]),
+                                data[1],
+                                data[2],
+                                data[3]
+                        );
+
+                lista.add(s);
+            }
+
+            reader.close();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+
+        return lista;
+    }
 }
