@@ -236,4 +236,55 @@ public class StudentCuNota extends Student {
 
         return lista;
     }
+
+    public static List<List<StudentCuNota>>
+    imparteFormatii(
+            List<StudentCuNota> lista) {
+
+        // prima formatie
+
+        List<StudentCuNota> grupa1 =
+                new ArrayList<>();
+
+
+        // a doua formatie
+
+        List<StudentCuNota> grupa2 =
+                new ArrayList<>();
+
+
+        for (int i = 0;
+             i < lista.size();
+             i++) {
+
+            // prima jumatate a studentilor
+
+            if (i < (lista.size() + 1) / 2) {
+
+                grupa1.add(lista.get(i));
+            }
+
+            // a doua jumatate
+
+            else {
+
+                grupa2.add(lista.get(i));
+            }
+        }
+
+
+        // lista finala cu cele 2 formatii
+
+        List<List<StudentCuNota>> rezultat =
+                new ArrayList<>();
+
+
+        rezultat.add(grupa1);
+        rezultat.add(grupa2);
+
+
+        return rezultat;
+    }
+
+
 }

@@ -1,9 +1,6 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
 
@@ -162,5 +159,28 @@ public class Main {
 
 
         System.out.println(cititi);
+
+        List<List<StudentCuNota>> formatii =
+                StudentCuNota.imparteFormatii(
+                        listaNote
+                );
+
+
+// afisam prima formatie
+
+        System.out.println("Formatia 1:");
+
+        System.out.println(
+                formatii.get(0)
+        );
+
+
+// afisam a doua formatie
+
+        System.out.println("Formatia 2:");
+
+        System.out.println(
+                formatii.get(1)
+        );
     }
 }
