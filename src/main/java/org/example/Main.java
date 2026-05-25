@@ -298,5 +298,113 @@ public class Main {
         System.out.println(
                 formatii.get(1)
         );
+
+        //C23/2 - 1
+        ExportDecorator.exportCuTimp(
+                listaNote
+        );
+
+        //C23/2 - 2
+
+        Thread threadPicati = new Thread(() -> {
+
+            try {
+
+                java.io.FileWriter writer =
+                        new java.io.FileWriter(
+                                "studenti_picati.txt"
+                        );
+
+
+                // filtram studentii sub 5
+
+                listaNote.stream()
+
+                        .filter(s -> s.nota < 5)
+
+                        .forEach(s -> {
+
+                            try {
+
+                                writer.write(
+                                        s.toString() + "\n"
+                                );
+
+                            } catch (Exception e) {
+
+                                e.printStackTrace();
+                            }
+                        });
+
+
+                writer.close();
+
+                System.out.println(
+                        "Fisier studenti_picati.txt creat."
+                );
+
+            } catch (Exception e) {
+
+                e.printStackTrace();
+            }
+        });
+
+
+
+
+// thread pentru studenti promovati
+
+        Thread threadPromovati = new Thread(() -> {
+
+            try {
+
+                java.io.FileWriter writer =
+                        new java.io.FileWriter(
+                                "studenti_promovati.txt"
+                        );
+
+
+                // filtram studentii >= 5
+
+                listaNote.stream()
+
+                        .filter(s -> s.nota >= 5)
+
+                        .forEach(s -> {
+
+                            try {
+
+                                writer.write(
+                                        s.toString() + "\n"
+                                );
+
+                            } catch (Exception e) {
+
+                                e.printStackTrace();
+                            }
+                        });
+
+
+                writer.close();
+
+                System.out.println(
+                        "Fisier studenti_promovati.txt creat."
+                );
+
+            } catch (Exception e) {
+
+                e.printStackTrace();
+            }
+        });
+
+
+
+
+// pornim threadurile
+
+        threadPicati.start();
+
+        threadPromovati.start();
+
     }
 }

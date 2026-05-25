@@ -1,0 +1,2 @@
+StudentCuNota{numarMatricol = 1; prenume = Ion; nume = Popescu; formatieDeStudiu = Info; nota = 10.0}
+StudentCuNota{numarMatricol = 2; prenume = Maria; nume = Ionescu; formatieDeStudiu = Mate; nota = 8.5}
